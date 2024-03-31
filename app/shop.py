@@ -1,0 +1,50 @@
+class Shop:
+    def __init__(self, name: str, price_list: dict, location: list) -> None:
+        self.name = name
+        self.price_list = price_list
+        self.location = location
+
+    def calculate_purchase_cost(self, products_to_buy: dict) -> float:
+        cost = 0
+
+        for key in products_to_buy.keys():
+            cost += round(self.price_list[key] * products_to_buy[key], 2)
+
+        return cost
+
+    @staticmethod
+    def print_recipe(recipe_data: list[tuple], customer_name: str,
+                     total_cost: float) -> None:
+        # current_time = datetime.now()
+        # date_string = f"Date: {current_time.strftime("%m/%d/%Y %H:%M:%S")}"
+
+        recipe_header = f"""
+Date: 04/01/2021 12:33:41
+Thanks, {customer_name}, for your purchase!
+You have bought:"""
+
+        print(recipe_header)
+
+        for product in recipe_data:
+            print(f"{product[0]} {product[1]}s for "
+                  + f"""{round(product[2])
+            if product[2] % 1 == 0 else product[2]}"""
+                  + " dollars")
+
+        recipe_footer = f"""Total cost is {total_cost} dollars
+See you again!
+"""
+        print(recipe_footer)
+
+    def make_purchase(self, product_cart: dict, customer_name: str) -> float:
+        cost = 0
+        recipe_data = []
+
+        for key in product_cart.keys():
+            product_cost = round(self.price_list[key] * product_cart[key], 2)
+            cost += product_cost
+            recipe_data.append((product_cart[key], key, product_cost))
+
+        Shop.print_recipe(recipe_data, customer_name, cost)
+
+        return cost
