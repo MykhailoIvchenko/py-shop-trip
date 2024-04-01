@@ -12,9 +12,7 @@ class Car:
 
     @staticmethod
     def get_distance(start: list, destination: list) -> float:
-        x_coords = (destination[0] - start[0]) ** 2
-        y_coords = (destination[1] - start[1]) ** 2
-        return math.sqrt(x_coords + y_coords)
+        return math.dist(start, destination)
 
     def get_consumption_for_the_trip(self, distance: float) -> float:
         return self.fuel_consumption * distance / 100
