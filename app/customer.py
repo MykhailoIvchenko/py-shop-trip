@@ -37,7 +37,7 @@ class Customer:
         return chosen_shop, cheapest_cost
 
     def make_shopping(self, shop: Shop, fuel_price: float) -> None:
-        print(f"{self.name} rides to {shop.name}")
+        print(f"{self.name} rides to {shop.name}\n")
         self.car.move_to_destination(shop.location)
 
         products_cost = shop.make_purchase(self.product_cart, self.name)
